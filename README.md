@@ -1,1 +1,1 @@
-# Chicken_decease_classification_end_to_end
+# Chicken_Disease_classification_end_to_end
