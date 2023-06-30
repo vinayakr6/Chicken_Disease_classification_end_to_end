@@ -2,10 +2,12 @@ import os
 from pathlib import Path
 import logging
 
-logging.basicConfig(level=logging.INFO, format='[%(asctime)s]: %(message)s')
+# format for logging
+logging.basicConfig(level=logging.INFO, format='[%(asctime)s]: %(message)s') 
 
 project_name = "cnnClassifier"
 
+# List of files and folders to be created 
 list_of_files = [
     ".github/workflows/.gitkeep",
     f"src/{project_name}/__init__.py", 
@@ -22,27 +24,28 @@ list_of_files = [
     "requirements.txt",
     "setup.py",
     "research/trials.ipynb",
-    "test.py"
-
+    "templates/index.html"
 
 ]
 
 
 for filepath in list_of_files:
-    filepath = Path(filepath)
-    filedir, filename = os.path.split(filepath)
+    filepath = Path(filepath) # Path creates a windows path
+    filedir, filename = os.path.split(filepath) # splits filepath into directories in the form of tuples
 
 
     if filedir != "":
         os.makedirs(filedir, exist_ok = True)
+        # Logging message
         logging.info(f"Creating directory; {filedir} for the file: {filename}")
 
-    
+    # Creates an empty file if it doesn't exist
     if (not os.path.exists(filepath)) or (os.path.getsize(filepath) == 0):
         with open(filepath, "w") as f:
             pass
         logging.info(f"Creating empty file: {filepath}")
 
+    # gives a message file already exists
     else:
         logging.info(f"{filename} is already exists")
-        
+
